@@ -48,7 +48,7 @@ def main():
     except:
         prompt_params = model.module.prompt_params()
     prompt_group = {'params': prompt_params, 'lr': cfg.OPTIM.LR * 0.01 }
-    print('num of params in prompt learner: ', len(prompt_params))
+    # print('num of params in prompt learner: ', len(prompt_params))
     
     ########## for linear ##########
     try:
@@ -59,7 +59,7 @@ def main():
     text_group = {'params': text_params, 'lr': cfg.OPTIM.LR}
     
     sgd_polices = [prompt_group, text_group]
-    #sgd_polices = [prompt_group]
+    # sgd_polices = [prompt_group]
     # breakpoint()
 
     if cfg.TRAINER.FINETUNE_BACKBONE:
