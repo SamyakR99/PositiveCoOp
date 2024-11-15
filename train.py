@@ -51,15 +51,15 @@ def main():
     print('num of params in prompt learner: ', len(prompt_params))
     
     ########## for linear ##########
-    # try:
-    #     text_params = model.txt_new_prompt()
-    # except:
-    #     text_params = model.module.txt_new_prompt()
+    try:
+        text_params = model.txt_new_prompt()
+    except:
+        text_params = model.module.txt_new_prompt()
     
-    # text_group = {'params': text_params, 'lr': cfg.OPTIM.LR}
+    text_group = {'params': text_params, 'lr': cfg.OPTIM.LR}
     
-    # sgd_polices = [prompt_group, text_group]
-    sgd_polices = [prompt_group]
+    sgd_polices = [prompt_group, text_group]
+    #sgd_polices = [prompt_group]
     # breakpoint()
 
     if cfg.TRAINER.FINETUNE_BACKBONE:
