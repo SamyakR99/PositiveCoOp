@@ -1,4 +1,4 @@
-name: dualcoop
+name: positiveCoOp
 channels:
   - defaults
 dependencies:
