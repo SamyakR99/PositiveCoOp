@@ -172,7 +172,7 @@ class DualCoop(nn.Module):
         self.cfg = cfg
         self.clip_model = clip_model
         self.txt_prompt_neg = nn.Parameter(torch.randn([len(self.classnames), 512]))
-        # self.txt_prompt_learn = nn.Parameter(torch.randn([len(self.classnames), 512]))
+        self.txt_prompt_learn = nn.Parameter(torch.randn([len(self.classnames), 512]))
         
 
     def forward(self, image, cls_id=None):
@@ -183,7 +183,7 @@ class DualCoop(nn.Module):
         prompts, tokenized_prompts = self.prompt_learner(cls_id)
         text_features_learned = self.text_encoder(prompts, tokenized_prompts)
 
-        text_features_learned = text_features_learned #+ self.txt_prompt_learn
+        text_features_learned = text_features_learned + self.txt_prompt_learn
 
         # neg_template = 'Not a photo of a {}'
         # neg_texts = [neg_template.format(label) for label in self.classnames]
