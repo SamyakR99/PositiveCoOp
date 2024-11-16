@@ -1,4 +1,4 @@
-Our implementation is built on [the link](https://github.com/sunxm2357/DualCoOp).
+Our implementation is built on the official implementation of  [DualCoOp](https://github.com/sunxm2357/DualCoOp).
 
 
 ## Set-up Experiment Environment
