@@ -36,3 +36,13 @@ python train.py --config_file configs/models/rn101_ep50.yaml --datadir /home/sam
 --input_size 448 --lr 0.5 --max_epochs 52 --loss_w 0.03 -pp 0.9 --csc --method_name negativecoop
 
 ```
+
+
+## Evaluation / Inference
+### MLR with Partial Labels
+```
+python val.py --config_file configs/models/rn101_ep50.yaml \
+--datadir <your_dataset_path> --dataset_config_file configs/datasets/<dataset>>.yaml \
+--input_size 224  --pretrained <ckpt_path> --csc --method_name
+```
+
