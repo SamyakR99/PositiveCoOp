@@ -1,7 +1,7 @@
 Our implementation is built on the official implementation of  [DualCoOp](https://github.com/sunxm2357/DualCoOp).
 
 
-## Set-up Experiment Environment
+## Environment
 
 We use Pytorch with python 3.9. 
 
