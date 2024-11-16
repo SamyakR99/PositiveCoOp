@@ -8,7 +8,7 @@ import torch.nn.functional as F
 
 _tokenizer = _Tokenizer()
 
-__all__ = ['dualcoop', 'DualCoop']
+__all__ = ['positivecoop', 'PositiveCoop']
 
 
 def load_clip_to_cpu(cfg):
@@ -154,7 +154,7 @@ class MLCPromptLearner(nn.Module):
         return prompts, tokenized_prompts
 
 
-class DualCoop(nn.Module):
+class PositiveCoop(nn.Module):
     def __init__(self, cfg, classnames, clip_model):
         super().__init__()
         self.visual_encoder_type = cfg.MODEL.BACKBONE.NAME
@@ -197,6 +197,7 @@ class DualCoop(nn.Module):
         # text_features_neg = self.clip_model.encode_text(tokenized_prompts_neg) 
         # text_features_neg = text_features_neg + self.txt_prompt_neg
         text_features_neg =  self.txt_prompt_neg
+
         
 
         text_features = torch.cat((text_features_neg, text_features_learned), dim = 0)
@@ -223,7 +224,7 @@ class DualCoop(nn.Module):
     @property
     def network_name(self):
         name = ''
-        name += 'DualCoop-{}'.format(self.visual_encoder_type)
+        name += 'PositiveCoop-{}'.format(self.visual_encoder_type)
         return name
 
     def backbone_params(self):
@@ -258,14 +259,14 @@ class DualCoop(nn.Module):
         return params
 
 
-def dualcoop(cfg, classnames, **kwargs):
+def positivecoop(cfg, classnames, **kwargs):
     print(f"Loading CLIP (backbone: {cfg.MODEL.BACKBONE.NAME})")
     clip_model = load_clip_to_cpu(cfg)
 
     clip_model.float()
 
-    print("Building dualcoop")
-    model = DualCoop(cfg, classnames, clip_model)
+    print("Building positivecoop")
+    model = PositiveCoop(cfg, classnames, clip_model)
 
     if not cfg.TRAINER.FINETUNE_BACKBONE:
         print('Freeze the backbone weights')
