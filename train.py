@@ -43,24 +43,35 @@ def main():
     model, arch_name = build_model(cfg, args, classnames)
     # build the optimizer and lr_scheduler
     # optim = build_optimizer(model.prompt_learner, cfg.OPTIM)
-    try:
-        prompt_params = model.prompt_params()
-    except:
-        prompt_params = model.module.prompt_params()
-    prompt_group = {'params': prompt_params, 'lr': cfg.OPTIM.LR * 0.01 }
-    # print('num of params in prompt learner: ', len(prompt_params))
     
-    ########## for linear ##########
-    try:
-        text_params = model.txt_new_prompt()
-    except:
-        text_params = model.module.txt_new_prompt()
+    if args.method_name == 'baseline':
+        
+        try:
+            prompt_params = model.prompt_params()
+        except:
+            prompt_params = model.module.prompt_params()
+        prompt_group = {'params': prompt_params, 'lr': cfg.OPTIM.LR * 0.01 }
+        # print('num of params in prompt learner: ', len(prompt_params))
+        sgd_polices = [prompt_group]
     
-    text_group = {'params': text_params, 'lr': cfg.OPTIM.LR}
-    
-    sgd_polices = [prompt_group, text_group]
-    # sgd_polices = [prompt_group]
-    # breakpoint()
+    ########## for non-baseline  ##########
+    else:
+        try:
+            prompt_params = model.prompt_params()
+        except:
+            prompt_params = model.module.prompt_params()
+        prompt_group = {'params': prompt_params, 'lr': cfg.OPTIM.LR * 0.01 }
+
+        try:
+            text_params = model.txt_new_prompt()
+        except:
+            text_params = model.module.txt_new_prompt()
+        
+        text_group = {'params': text_params, 'lr': cfg.OPTIM.LR}
+        
+        sgd_polices = [prompt_group, text_group] 
+        
+
 
     if cfg.TRAINER.FINETUNE_BACKBONE:
         try:
