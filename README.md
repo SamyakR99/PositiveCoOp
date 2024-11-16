@@ -48,3 +48,12 @@ python val.py --config_file configs/models/rn101_ep50.yaml \
 --input_size 224  --pretrained <ckpt_path> --csc --method_name
 ```
 
+Welcome to cite our work if you find it is helpful to your research.
+```
+@article{rawlekar2024rethinking,
+  title={Rethinking Prompting Strategies for Multi-Label Recognition with Partial Annotations},
+  author={Rawlekar, Samyak and Bhatnagar, Shubhang and Ahuja, Narendra},
+  journal={arXiv preprint arXiv:2409.08381},
+  year={2024}
+}
+```
