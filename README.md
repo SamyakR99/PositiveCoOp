@@ -1,3 +1,6 @@
+# PositiveCoOp: Rethinking Prompting Strategies for Multi-Label Recognition with Partial Annotations (WACV 2025)
+Authors: [Samyak Rawlekar](https://samyakr99.github.io/), [Shubhang Bhatnagar](https://shubhangb97.github.io/), [Narendra Ahuja](https://vision.ai.illinois.edu/narendra-ahuja/)
+
 Our implementation is built on the official implementation of  [DualCoOp](https://github.com/sunxm2357/DualCoOp).
 
 
