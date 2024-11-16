@@ -21,7 +21,8 @@ python train.py  --config_file configs/models/rn101_ep50.yaml \
 --input_size 448 --lr <lr_value>   --loss_w <loss_weight> \
 -pp <porition_of_avail_label> --csc --method_name
 ```
-Some Args:  
+Some Args:
+- mehthod_name : positivecoop/ negativecoop/ baseline
 - `dataset_config_file`: currently the code supports `configs/datasets/coco.yaml` and `configs/datasets/voc2007.yaml`  
 - `lr`: `0.001` for VOC2007 and `0.002` for MS-COCO.
 - `pp`: from 0 to 1. It specifies the portion of labels are available during the training.
