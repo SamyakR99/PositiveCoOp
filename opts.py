@@ -48,6 +48,11 @@ def arg_parser():
     parser.add_argument('--lr', dest="lr", type=float, help='the learning rate')
     parser.add_argument('--loss_w', dest="loss_w", type=float, default=1., help='the loss weights')
 
+
+    ###
+    parser.add_argument('--method_name', dest='method_name', type = str, 
+                        help='specify the method_name')
+
     parser.add_argument('--csc', dest='csc', action='store_true',
                         help='specify the csc')
 
